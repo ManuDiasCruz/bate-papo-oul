@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Roboto 400 and 700 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Page Title -->
+    <title>Bate Papo UOL</title>
+</head>
+<body>
+    <header>
+        <img src="res/logo 1.png" alt="Logo Bate Papo UOL">        
+        <ion-icon name="people-outline"></ion-icon>
+    </header>
+
+    <main>
+        <div class="status-message">
+            <p class="time">00:00</p>
+            <p> <span class="nome-usuario">João</span> entra na sala</p>
+        </div>
+
+        <div class="message">
+            <p class="time">00:00</p>
+            <p> <span class="nome-usuario">João</span> para <span class="nome-usuario">Todos</span>: Bom dia!</p>
+        </div>
+
+        <div class="message">
+            <p class="time">00:00</p>
+            <p> <span class="nome-usuario">Maria</span> para <span class="nome-usuario">João</span>: Oi João!</p>
+        </div>
+
+        <div class="reserved-message">
+            <p class="time">00:00</p>
+            <p> <span class="nome-usuario">João </span> reservadamente para <span class="nome-usuario">Maria</span>: Oi gatinha quer tc?</p>
+        </div>
+
+        <div class="status-message">
+            <p class="time">00:00</p>
+            <p> <span class="nome-usuario">Maria</span> sai da sala...</p>
+        </div>
+    </main>
+
+    <aside class="sidebar">
+        <p>Escolha um contato para enviar mensagem:</p>
+        <section class="contact-list">
+            <div class="contacts">
+                <a class="contact" href="#">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <p>Todos</p>
+                </a>
+                <ion-icon id="1" class="selected-contact" name="checkmark-outline"></ion-icon>
+            </div>
+            <div class="contacts">
+                <a class="contact" href="#">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <p>João</p>
+                </a>
+                <ion-icon id="2" class="selected-contact" name="checkmark-outline"></ion-icon>
+            </div>
+            <div class="contacts">
+                <a class="contact" href="#">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <p>Maria</p>
+                </a>
+                <ion-icon id="3" class="selected-contact" name="checkmark-outline"></ion-icon>
+            </div>
+        </section>
+        <section class="message-visibility">
+            <div class="public-message">
+                <a class="public" href="#">
+                    <ion-icon name="lock-open-outline"></ion-icon>
+                    <p>Público</p>
+                </a>
+                <ion-icon class="public-selected" name="checkmark-outline"></ion-icon>
+            </div>
+            <div class="private-message">
+                <a class="private" href="#">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <p>Reservadamente</p>
+                </a>
+                <ion-icon class="private-selected" name="checkmark-outline"></ion-icon>
+            </div>
+        </section>
+    </aside>
+
+    <footer>
+        <div class="enter-message">
+            <input class="initial" type="text" name="input" value="Escreva aqui...">
+        </div>
+        <div class="send-message">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+        </div>
+    </footer>
+
+    <!-- Imports -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>
