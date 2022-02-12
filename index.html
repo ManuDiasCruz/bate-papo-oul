@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Page Title -->
@@ -19,78 +20,92 @@
 <body>
     <header>
         <img src="res/logo 1.png" alt="Logo Bate Papo UOL">        
-        <ion-icon name="people-outline"></ion-icon>
+        <ion-icon name="people"></ion-icon>
     </header>
 
     <main>
-        <div class="status-message">
+        <div class="message status">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">João</span> entra na sala</p>
         </div>
 
-        <div class="message">
+        <div class="message normal">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">João</span> para <span class="nome-usuario">Todos</span>: Bom dia!</p>
         </div>
 
-        <div class="message">
+        <div class="message normal">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">Maria</span> para <span class="nome-usuario">João</span>: Oi João!</p>
         </div>
 
-        <div class="reserved-message">
+        <div class="message reserved">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">João </span> reservadamente para <span class="nome-usuario">Maria</span>: Oi gatinha quer tc?</p>
         </div>
 
-        <div class="status-message">
+        <div class="message status">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">Maria</span> sai da sala...</p>
         </div>
     </main>
 
-    <aside class="sidebar">
-        <p>Escolha um contato para enviar mensagem:</p>
-        <section class="contact-list">
-            <div class="contacts">
-                <a class="contact" href="#">
-                    <ion-icon name="people-outline"></ion-icon>
-                    <p>Todos</p>
-                </a>
-                <ion-icon id="1" class="selected-contact" name="checkmark-outline"></ion-icon>
-            </div>
-            <div class="contacts">
-                <a class="contact" href="#">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <p>João</p>
-                </a>
-                <ion-icon id="2" class="selected-contact" name="checkmark-outline"></ion-icon>
-            </div>
-            <div class="contacts">
-                <a class="contact" href="#">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <p>Maria</p>
-                </a>
-                <ion-icon id="3" class="selected-contact" name="checkmark-outline"></ion-icon>
-            </div>
-        </section>
-        <section class="message-visibility">
-            <div class="public-message">
-                <a class="public" href="#">
-                    <ion-icon name="lock-open-outline"></ion-icon>
-                    <p>Público</p>
-                </a>
-                <ion-icon class="public-selected" name="checkmark-outline"></ion-icon>
-            </div>
-            <div class="private-message">
-                <a class="private" href="#">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <p>Reservadamente</p>
-                </a>
-                <ion-icon class="private-selected" name="checkmark-outline"></ion-icon>
-            </div>
-        </section>
-    </aside>
+    <div class="background-sidebar">
+
+        <aside class="sidebar">
+            <h1>Escolha um contato para enviar mensagem:</h1>
+            <section class="contact-list">
+                <article class="contacts">
+                    <div class="contact">
+                        <ion-icon class="icone" name="people-sharp"></ion-icon>
+                        <a href="#">Todos</a>
+                    </div>
+                    <div class="selected">
+                        <img src="res/Vector.svg" alt="">
+                    </div>
+                </article>
+                <article class="contacts">
+                    <div class="contact">
+                        <ion-icon class="icone" name="person-circle-outline"></ion-icon>
+                        <a href="#">João</a>
+                    </div>
+                    <div class="selected">
+                        <img src="res/Vector.svg" alt="">
+                    </div>
+                </article>
+                <article class="contacts">
+                    <div class="contact">
+                        <ion-icon class="icone" name="person-circle-outline"></ion-icon>
+                        <a  href="#">Maria</a>
+                    </div>
+                    <div class="selected">
+                        <img src="res/Vector.svg" alt="">
+                    </div>
+                </article>
+            </section>
+            <h2>Escolha a visibilidade:</h2>
+            <section class="message-visibility">
+                <article class="visibility">
+                    <div class="public" >
+                        <ion-icon class="icone" name="lock-open"></ion-icon>
+                        <a  href="#">Público</a>
+                    </div>
+                    <div class="selected">
+                        <img src="res/Vector.svg" alt="">
+                    </div>
+                </article>
+                <article class="visibility">
+                    <div class="private">
+                        <ion-icon class="icone" name="lock-closed"></ion-icon>
+                        <a  href="#">Reservadamente</a>
+                    </div>
+                    <div class="selected">
+                        <img src="res/Vector.svg" alt="">
+                    </div>
+                </article>
+            </section>
+        </aside>
+    </div>
 
     <footer>
         <div class="enter-message">
@@ -101,7 +116,15 @@
         </div>
     </footer>
 
+    <div class="login">
+        <img src="res/logo 1.png" alt="Logo Bate Papo UOL">
+        <input type="text" value="Digite seu nome">
+        <button onclick="login()">Entrar</button>
+    </div>
+
     <!-- Imports -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>
