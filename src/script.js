@@ -1,3 +1,4 @@
+// Variable initiation
 let messages = [];
 let filteredMsgs = [];
 
@@ -10,22 +11,18 @@ let msg = {
 };
 
 let usuario = {
-    from: "teste",
-    to: "Todos",
-    text: "Boa noite!",
-    type: "message",
-    time: "01:10:44"
+    nome: "carlos"
 };
 
-getMessages();
-setInterval(getMessages, 3000);
+let today = new Date();
+let lastTimeMsg = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+// getMessages();
 
 function getMessages(){
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
     promise.then(getData);
     console.log("Voltei do then!");
-    const ultimaMensagem = document.querySelector("main").lastElementChild;
-    ultimaMensagem.scrollIntoView();
 }
   
 function getData(answerServidor) {
@@ -33,8 +30,13 @@ function getData(answerServidor) {
     for (let i=0; i<answerServidor.data.length; i++){
         messages.push(answerServidor.data[i]);
     }
-    // showAllMessages(messages);
-    filterUserMsgs();
+    showAllMessages(messages);
+    // filterUserMsgs();
+
+    // Makes the last message scroll up
+    const lastMsg = document.querySelector("main").lastElementChild;
+    lastMsg.scrollIntoView();
+    let currentTime = lastMsg.querySelector(".time").innerHTML;
 }
 
 function showAllMessages(msgList) {
@@ -49,7 +51,7 @@ function filterUserMsgs(){
 }
 
 function filterMsg(msg){
-    if (msg.from === usuario.from || msg.to === usuario.from){
+    if (msg.from === usuario.nome || msg.to === usuario.nome){
         return true;
     }else{
         return false;
@@ -80,12 +82,30 @@ function screenRenderMessage(msg) {
     chat.scrollIntoView();
 }
 
-function login(nome){
-    const usuario = {
-        usuario: nome
-    };
+function login(){
+    usuario.nome = document.querySelector(".login").querySelector("input").value;
+    console.log(usuario);
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", usuario);
-    promise.then(imprimirMsg);   
+    promise.then(getMessages);
+    enterChat();
+    promise.catch(loginError);
 }
 
-function enviarMsg(){}
+function loginError(error){
+    alert("Status error code: " + error);
+    usuario.nome = null;
+    document.querySelector(".login").querySelector("input").value = "Digite seu nome";
+}
+
+setInterval(pingMsg, 5000);
+
+function pingMsg(){
+    const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", usuario);
+    console.log("Pin servidor");
+    promise.catch(loginError);
+}
+
+function enterChat(){
+    setInterval(getMessages, 3000);
+    document.querySelector(".login").classList.add(".hidden");
+}

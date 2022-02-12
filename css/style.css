@@ -36,6 +36,7 @@ main{
     font-weight: normal;
     font-size: 14px;
     margin-top: 106px;
+    margin-bottom: 90px;
 }
 
 main p{
@@ -189,11 +190,15 @@ aside a, p{
     height: 100vh;
     position: absolute;
     z-index: 3;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 
     background: #FFFFFF;
+}
+
+.login .hidden{
+    display: none;
 }
 
 .login img{
