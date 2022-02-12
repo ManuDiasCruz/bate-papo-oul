@@ -18,13 +18,14 @@
     <title>Bate Papo UOL</title>
 </head>
 <body>
+    <!-- Main Screen: chat -->
     <header>
         <img src="res/logo 1.png" alt="Logo Bate Papo UOL">        
         <ion-icon name="people"></ion-icon>
     </header>
 
     <main>
-        <div class="message status">
+        <div data-identifier="message" class="message status">
             <p class="time">00:00</p>
             <p> <span class="nome-usuario">João</span> entra na sala</p>
         </div>
@@ -49,9 +50,19 @@
             <p> <span class="nome-usuario">Maria</span> sai da sala...</p>
         </div>
     </main>
+    <footer>
+        <div class="enter-message">
+            <input class="initial" type="text" name="input" value="Escreva aqui...">
+        </div>
+        <div class="send-button">
+            <button onclick="sendMessage()" class="send-message" data-identifier="send-message">
+                <ion-icon name="paper-plane-outline"></ion-icon>
+            </button>
+        </div>
+    </footer>
 
+    <!-- Profile Screen -->
     <div class="background-sidebar">
-
         <aside class="sidebar">
             <h1>Escolha um contato para enviar mensagem:</h1>
             <section class="contact-list">
@@ -107,19 +118,11 @@
         </aside>
     </div>
 
-    <footer>
-        <div class="enter-message">
-            <input class="initial" type="text" name="input" value="Escreva aqui...">
-        </div>
-        <div class="send-message">
-            <ion-icon name="paper-plane-outline"></ion-icon>
-        </div>
-    </footer>
-
+    <!-- Login Screen -->
     <div class="login">
         <img src="res/logo 1.png" alt="Logo Bate Papo UOL">
-        <input type="text" value="Digite seu nome">
-        <button onclick="login()">Entrar</button>
+        <input data-identifier="enter-name" type="text" value="Digite seu nome">
+        <button onclick="login()" data-identifier="start">Entrar</button>
     </div>
 
     <!-- Imports -->

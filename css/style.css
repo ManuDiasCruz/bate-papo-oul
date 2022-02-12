@@ -1,7 +1,6 @@
 body{
     background-color: #E5E5E5;
     font-family: "Roboto", sans-serif;
-    overflow: hidden; 
 }
 
 header{
@@ -92,6 +91,11 @@ footer input{
     font-size: 18px;
     border:none;
     margin-left: 18px;
+}
+
+footer button{
+    border: none;
+    background: #FFFFFF;
 }
 
 footer ion-icon{
