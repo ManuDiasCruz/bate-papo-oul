@@ -18,8 +18,6 @@ let usuario = {
     name: ""
 };
 
-// getMessages();
-
  
 function getData(answerServidor) {
     console.log("Entrei em getData()");
@@ -90,19 +88,22 @@ function login(){
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", usuario);
     promise.then(loginOk);
     promise.catch(loginError);
+
+    getMessages();
+    setInterval(pingMsg, 5000);
 }
 
 function loginOk(){
     document.querySelector(".login").style.display = "none";
     document.querySelector(".carregando").style.display = "none";
-    getMessages();
 }
 
 function loginError(error){
-    alert("Status error code: " + error);
+    alert("ERROR:" + error);
     usuario.nome = null;
     document.querySelector(".carregando").style.display = "none";
     document.querySelector(".login").querySelector("input").value = "Digite seu nome";
+    document.querySelector(".login-error").innerHTML = "Nome de usuário já em uso, por favor digite um novo nome.";
 }
 
 function getMessages(){
@@ -111,10 +112,17 @@ function getMessages(){
     console.log("Voltei do then!");
 }
 
-// setInterval(pingMsg, 5000);
+function openSidebar(){
+    document.querySelector(".background").style.display = "block";
+    document.querySelector("aside").style.display = "flex";
+}
+
+function closeSidebar(){
+    document.querySelector(".background").style.display = "none";
+    document.querySelector("aside").style.display = "none";
+}
 
 function pingMsg(){
-    const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", usuario);
+    const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/status", usuario);
     console.log("Pin servidor");
-    promise.catch(loginError);
 }

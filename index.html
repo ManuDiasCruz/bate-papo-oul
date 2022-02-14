@@ -21,7 +21,7 @@
     <!-- Main Screen: chat -->
     <header>
         <img src="res/logo 1.png" alt="Logo Bate Papo UOL">        
-        <ion-icon onclick="selectContact()" name="people"></ion-icon>
+        <ion-icon onclick="openSidebar()" name="people"></ion-icon>
     </header>
 
     <main>
@@ -62,8 +62,9 @@
     </footer>
 
     <!-- Profile Screen -->
-    <div class="background-sidebar">
-        <aside class="sidebar">
+    <div class="sidebar">
+        <div class="background" onclick="closeSidebar()"></div>
+        <aside>
             <h1>Escolha um contato para enviar mensagem:</h1>
             <section class="contact-list">
                 <article class="contacts">
@@ -122,6 +123,7 @@
     <div class="login">
         <img class="logo" src="res/logo 1.png" alt="Logo Bate Papo UOL">
         <input data-identifier="enter-name" type="text" value="Digite seu nome" onfocus="this.value='';"><br>
+        <p class="login-error"></p>
         <button data-identifier="start" onclick="loadingLogin()">Entrar</button>
     </div>
     <div class="carregando">
