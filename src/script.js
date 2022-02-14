@@ -1,30 +1,26 @@
 // Variable initiation
 let messages = [];
-let filteredMsgs = [];
-
+let participants = [];
 let messageType = "";
-
-
-let today = new Date();
-let currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-let lastTimeMsg = "";
 
 let msg = {
     from: "",
     to: "Todos",
     text: "entra na sala",
     type: "status",
-    time: currentTime
+    time: "00:00:00"
 };
 
 let usuario = {
     name: ""
 };
 
+let receiver = "Todos";
+let msgType = "message";
+
 // Function area
 function getData(answerServidor) {
     messages = [];
-    console.log("Entrei em getData()");
     for (let i=0; i<answerServidor.data.length; i++){
         messages.push(answerServidor.data[i]);
     }
@@ -38,7 +34,7 @@ function getData(answerServidor) {
 
 function filterUserMsgs(){
     const userMsgs = messages.filter(filterMsg);
-    setTimeout(userMsgs.forEach(screenRenderMessage), 50);
+    userMsgs.forEach(screenRenderMessage);
 }
 
 // Falta verificar se as msgs são de depois que o usuário entrou
@@ -113,7 +109,6 @@ function screenRenderMessage(msg) {
             </div>`;
         }
     }
-    chat.scrollIntoView();
 }
 
 function showAllMessages(msgList) {
@@ -123,20 +118,23 @@ function showAllMessages(msgList) {
 }
 
 function loadingLogin(){
-    console.log("Loading...")
     document.querySelector(".carregando").style.display = "flex";
-    setTimeout(login(), 100000);
+    setTimeout(login(), 3000);
 }
 
 function login(){    
     usuario.name = document.querySelector(".login").querySelector("input").value;
-    console.log(usuario);
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", usuario);
     promise.then(loginOk);
     promise.catch(loginError);
 
-    let pMsg = setInterval(getMessages, 3000);
-    let pUser = setInterval(pingUser, 5000);
+    getMessages();
+    getParticipants();
+    pingUser();
+
+    setInterval(getMessages, 3000);
+    setInterval(pingUser, 5000);
+    setInterval(getParticipants, 10000);
 }
 
 function loginOk(){
@@ -153,7 +151,6 @@ function loginError(error){
 }
 
 function getMessages(){
-    console.log("Ping messages");
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
     promise.then(getData);
 }
@@ -166,12 +163,66 @@ function openSidebar(){
 function closeSidebar(){
     document.querySelector(".background").style.display = "none";
     document.querySelector("aside").style.display = "none";
+    const auxText = document.querySelector(".enter-message");
+    if (msgType == "private_message"){
+        auxText.querySelector("p").innerHTML = `Enviando para ${receiver} (reservadamente)`;
+    }else{
+        auxText.querySelector("p").innerHTML = `Enviando para ${receiver}`;
+    }
+    
+}
+
+function getParticipants(){
+    const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
+    promise.then(getParticipantsData);
+}
+
+function getParticipantsData(answerServidor) {
+    participants = [];
+    for (let i=0; i<answerServidor.data.length; i++){
+        participants.push(answerServidor.data[i]);
+    }
+    participants.forEach(screenRenderParticipant);
+}
+
+
+function screenRenderParticipant(participant){
+    const userList = document.querySelector(".contact-list");
+    userList.innerHTML += `
+    <article data-identifier="participant" class="contacts" onclick="putCheckmark(this)">
+        <div class="contact">
+            <ion-icon class="icone" name="person-circle-outline"></ion-icon>
+            <p>${participant.name}</p>
+        </div>
+        <div class="selected">
+            <img src="res/Vector.svg" alt="">
+        </div>
+    </article>`;
+}
+
+function putCheckmark(element){
+    const allUsers = document.querySelectorAll(".selected");
+    for (let i=0; i<allUsers.length; i++){
+        allUsers[i].style.display = "none";
+    }    
+    receiver = element.querySelector("p").innerHTML;
+    element.querySelector(".selected").style.display = "block";
+}
+
+function messageVisibility(element){
+    if (element.querySelector("p").innerHTML === "Público"){
+        document.querySelector(".private-message").style.display = "none";
+        element.querySelector(".public-message").style.display = "block";
+        msgType = "message";
+    }else {
+        document.querySelector(".public-message").style.display = "none";
+        element.querySelector(".private-message").style.display = "block";
+        msgType = "private_message";
+    }
 }
 
 function pingUser(){
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/status", usuario);
-    console.log("Pin servidor");
-    usuario.name = "";
     promise.catch(messageError);
 }
 
@@ -183,9 +234,7 @@ document.addEventListener("keypress", function(element) {
 });
 
 function sendMessage(){
-    console.log("Cliquei para enviar msg!");
     msg = createMessage();
-    console.log(msg);
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", msg);
     promise.catch(messageError);
 }
@@ -197,12 +246,11 @@ function messageError(){
 
 function createMessage(){
     let texto = document.querySelector("input").value;
-    console.log(texto + lastTimeMsg);
     msg = {
         from: usuario.name,
-        to: "Todos",
+        to: receiver,
         text: texto,
-        type: "message",
+        type: msgType,
         time: lastTimeMsg
     };
     return msg;

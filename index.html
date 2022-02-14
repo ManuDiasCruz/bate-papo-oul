@@ -30,7 +30,7 @@
     <footer>
         <div class="enter-message">
             <input class="initial" type="text" name="input" value="Escreva aqui..." onfocus="this.value='';">
-            <input type="submit" id="submit" value=" ">
+            <p></p>
         </div>
         <div class="send-button">
             <button onclick="sendMessage()" class="send-message" data-identifier="send-message">
@@ -45,51 +45,34 @@
         <aside>
             <h1>Escolha um contato para enviar mensagem:</h1>
             <section class="contact-list">
-                <article class="contacts">
+                <article data-identifier="participant" class="contacts" onclick="putCheckmark(this)">
                     <div class="contact">
                         <ion-icon class="icone" name="people-sharp"></ion-icon>
-                        <a href="#">Todos</a>
+                        <p>Todos</p>
                     </div>
                     <div class="selected">
                         <img src="res/Vector.svg" alt="">
                     </div>
                 </article>
-                <article class="contacts">
-                    <div class="contact">
-                        <ion-icon class="icone" name="person-circle-outline"></ion-icon>
-                        <a href="#">João</a>
-                    </div>
-                    <div class="selected">
-                        <img src="res/Vector.svg" alt="">
-                    </div>
-                </article>
-                <article class="contacts">
-                    <div class="contact">
-                        <ion-icon class="icone" name="person-circle-outline"></ion-icon>
-                        <a  href="#">Maria</a>
-                    </div>
-                    <div class="selected">
-                        <img src="res/Vector.svg" alt="">
-                    </div>
-                </article>
+                <!-- Dynamically loaded by JavaScript -->
             </section>
             <h2>Escolha a visibilidade:</h2>
             <section class="message-visibility">
-                <article class="visibility">
+                <article data-identifier="visibility" class="visibility" onclick="messageVisibility(this)">
                     <div class="public" >
                         <ion-icon class="icone" name="lock-open"></ion-icon>
-                        <a  href="#">Público</a>
+                        <p>Público</p>
                     </div>
-                    <div class="selected">
+                    <div class="public-message">
                         <img src="res/Vector.svg" alt="">
                     </div>
                 </article>
-                <article class="visibility">
+                <article data-identifier="visibility" class="visibility" onclick="messageVisibility(this)">
                     <div class="private">
                         <ion-icon class="icone" name="lock-closed"></ion-icon>
-                        <a  href="#">Reservadamente</a>
+                        <p>Reservadamente</p>
                     </div>
-                    <div class="selected">
+                    <div class="private-message">
                         <img src="res/Vector.svg" alt="">
                     </div>
                 </article>
