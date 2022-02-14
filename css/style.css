@@ -109,7 +109,7 @@ footer ion-icon{
     display: none; /* block */
     width: 30vw;
     height: 100vh;
-    top: -1px;
+    top: 0px;
     left: 0px;
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
@@ -119,6 +119,8 @@ footer ion-icon{
 aside{
     width: 70vw;
     height: 100vh;
+    top: 0px;
+    left: 0px;
     margin-left: 30vw;
     display: none; /* flex */
     flex-direction: column;
