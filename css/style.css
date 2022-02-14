@@ -197,20 +197,17 @@ aside a, p{
     background: #FFFFFF;
 }
 
-.login .hidden{
-    display: none;
-}
-
-.login img{
+.logo{
     width: 130px;
     height: 92px;
     margin-top: 72px;
+    margin-bottom: 94px;
 }
 
 .login input{
+    font-family: "Roboto", sans-serif;
     width: 260px;
     height: 54px;
-    margin-top: 94px;
     background: #FFFFFF;
     border: 1px solid #D7D7D7;
     box-sizing: border-box;
@@ -232,10 +229,40 @@ aside a, p{
 }
 
 .login button p{
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     text-align: center;    
     color: #696969;
+}
+
+.carregando{
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 4;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    background: #FFFFFF;
+}
+
+.carregando .img{
+    width: 100px;
+    height: 100px;
+}
+
+.carregando p{
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;    
+    color: #000000;
+    margin-top: 20px;
 }
 
